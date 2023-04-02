@@ -2,7 +2,6 @@ import axios from "axios";
 import {ICar} from "../model";
 
 export class CarsAPI {
-  //GET
   static URL = "https://test.tspb.su/test-task"
 
   static async fetchCars() {

@@ -12,10 +12,8 @@ function App() {
 
   useEffect(() => {
     setIsLoading(true)
-    CarsAPI.fetchCars().then((res) => {
-      // console.log(res)
-      dispatch(setCars(res))
-    })
+    CarsAPI.fetchCars()
+      .then((res) => dispatch(setCars(res)))
       .catch((e) => setError(e))
       .finally(() => setIsLoading(false))
   }, [])

@@ -2,9 +2,17 @@ import React from 'react'
 import {Button, Card} from 'react-bootstrap';
 import {ICar} from "../model";
 import {Window} from "./Window";
+import {useAppDispatch} from "../hook/reduxHook";
+import {appSlice} from "../store/reducers/AppSlice";
 
 export function CarCard({car}: { car: ICar }) {
   const [modalShow, setModalShow] = React.useState(false);
+  const {deleteCar} = appSlice.actions
+  const dispatch = useAppDispatch()
+
+  const deleteHandler = () => {
+    dispatch(deleteCar(car.id))
+  }
 
   return (
     <>
@@ -30,7 +38,9 @@ export function CarCard({car}: { car: ICar }) {
             >
               Обновить
             </Button>
-            <Button variant="outline-danger">
+            <Button variant="outline-danger"
+                  onClick={deleteHandler}
+            >
               Удалить
             </Button>
           </div>

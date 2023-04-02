@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import {ICar} from "../model";
 import {Col, Form, Modal, Row} from "react-bootstrap";
 import {Button} from "react-bootstrap";
+import {useAppDispatch} from "../hook/reduxHook";
+import {appSlice} from "../store/reducers/AppSlice";
 
 interface WindowProps {
   show: boolean
@@ -10,6 +12,9 @@ interface WindowProps {
 }
 
 export function Window({onHide, car, show}: WindowProps) {
+  const {updateCar} = appSlice.actions
+  const dispatch = useAppDispatch()
+
   const [form, setForm] = useState({
     name: car.name,
     model: car.model,
@@ -18,6 +23,12 @@ export function Window({onHide, car, show}: WindowProps) {
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({...form, [e.target.name]: e.target.value})
+  }
+
+  const updateHandler = () => {
+    const newCar = {...car, name: form.name, model: form.model, price: form.price}
+    dispatch(updateCar(newCar))
+    onHide()
   }
 
   return (
@@ -75,7 +86,11 @@ export function Window({onHide, car, show}: WindowProps) {
           </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant={"success"}>Обновить</Button>
+        <Button variant={"success"}
+              onClick={updateHandler}
+        >
+          Обновить
+        </Button>
         <Button onClick={onHide}>Закрыть</Button>
       </Modal.Footer>
     </Modal>
