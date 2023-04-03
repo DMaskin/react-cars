@@ -9,7 +9,6 @@ interface AppState {
 
 const initialState: AppState = {
   cars: [] as ICar[],
-  // cars: startCars,
   isLoading: false,
   error: ""
 }
@@ -33,6 +32,11 @@ export const appSlice = createSlice({
     },
     deleteCar(state, action: PayloadAction<number>) {
       state.cars = [...state.cars.filter((car) => car.id !== action.payload)]
+    },
+    sortCars(state, action: PayloadAction<string>) {
+      const property = action.payload
+      state.cars = [...state.cars.sort((a: any, b: any) =>
+        a[property] > b[property] ? 1 : -1)]
     }
   }
 })

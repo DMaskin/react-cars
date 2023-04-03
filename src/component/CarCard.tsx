@@ -26,7 +26,7 @@ export function CarCard({car}: { car: ICar }) {
       >
         <Card.Header><strong>{car.name}</strong></Card.Header>
         <Card.Body>
-          <Card.Title>{car.model}</Card.Title>
+          <Card.Title>Модель: {car.model}</Card.Title>
           <Card.Text className="d-flex flex-column mb">
             <span>Год: {car.year}</span>
             <span>Цвет: {car.color}</span>
@@ -39,7 +39,7 @@ export function CarCard({car}: { car: ICar }) {
               Обновить
             </Button>
             <Button variant="outline-danger"
-                  onClick={deleteHandler}
+                    onClick={deleteHandler}
             >
               Удалить
             </Button>

@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {Header} from "./component/Header";
 import {CarBox} from "./component/CarBox";
-import 'bootstrap/dist/css/bootstrap.css';
 import {CarsAPI} from "./service/CarsAPI";
 import {appSlice} from "./store/reducers/AppSlice";
 import {useAppDispatch} from "./hook/reduxHook";

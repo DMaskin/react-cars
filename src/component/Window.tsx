@@ -46,48 +46,48 @@ export function Window({onHide, car, show}: WindowProps) {
       </Modal.Header>
       <Modal.Body>
         <h4 className="mb-3">Введите марку, модель и стоимость:</h4>
-          <Form>
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-              <Form.Label column md="2">
-                Марка:
-              </Form.Label>
-              <Col md="10">
-                <Form.Control type="text"
-                              name="name"
-                              value={form.name}
-                              onChange={changeHandler}
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-              <Form.Label column md="2">
-                Модель:
-              </Form.Label>
-              <Col md="10">
-                <Form.Control type="text"
-                              name="model"
-                              value={form.model}
-                              onChange={changeHandler}
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-              <Form.Label column md="2">
-                Цена:
-              </Form.Label>
-              <Col md="10">
-                <Form.Control type="text"
-                              name="price"
-                              value={form.price}
-                              onChange={changeHandler}
-                />
-              </Col>
-            </Form.Group>
-          </Form>
+        <Form>
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+            <Form.Label column md="2">
+              Марка:
+            </Form.Label>
+            <Col md="10">
+              <Form.Control type="text"
+                            name="name"
+                            value={form.name}
+                            onChange={changeHandler}
+              />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+            <Form.Label column md="2">
+              Модель:
+            </Form.Label>
+            <Col md="10">
+              <Form.Control type="text"
+                            name="model"
+                            value={form.model}
+                            onChange={changeHandler}
+              />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+            <Form.Label column md="2">
+              Цена:
+            </Form.Label>
+            <Col md="10">
+              <Form.Control type="text"
+                            name="price"
+                            value={form.price}
+                            onChange={changeHandler}
+              />
+            </Col>
+          </Form.Group>
+        </Form>
       </Modal.Body>
       <Modal.Footer>
         <Button variant={"success"}
-              onClick={updateHandler}
+                onClick={updateHandler}
         >
           Обновить
         </Button>
