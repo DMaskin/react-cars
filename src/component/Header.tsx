@@ -2,12 +2,14 @@ import React from 'react'
 import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 import {useAppDispatch} from "../hook/reduxHook";
 import {appSlice} from "../store/reducers/AppSlice";
+import {MapWindow} from "./modal/MapWindow";
 
 export function Header() {
+  const [modalShow, setModalShow] = React.useState(false)
   const dispatch = useAppDispatch()
   const {sortCars} = appSlice.actions
 
-  const clickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const clickSortHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     dispatch(sortCars(e.currentTarget.name))
   }
 
@@ -21,16 +23,19 @@ export function Header() {
           navbarScroll
         >
           <NavDropdown title="Сортировать">
-            <NavDropdown.Item name="year" onClick={(e: React.MouseEvent<HTMLButtonElement>) => clickHandler(e)}>
+            <NavDropdown.Item name="year" onClick={(e: React.MouseEvent<HTMLButtonElement>) => clickSortHandler(e)}>
               Год выпуска
             </NavDropdown.Item>
-            <NavDropdown.Item name="price" onClick={(e: React.MouseEvent<HTMLButtonElement>) => clickHandler(e)}>
+            <NavDropdown.Item name="price" onClick={(e: React.MouseEvent<HTMLButtonElement>) => clickSortHandler(e)}>
               Цена
             </NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link>Карта</Nav.Link>
+          <Nav.Link onClick={() => setModalShow(true)}>Карта</Nav.Link>
         </Nav>
       </Container>
+      <MapWindow onHide={() => setModalShow(false)}
+                 show={modalShow}
+      />
     </Navbar>
   )
 }

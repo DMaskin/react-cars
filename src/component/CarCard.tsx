@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button, Card} from 'react-bootstrap';
 import {ICar} from "../model";
-import {Window} from "./Window";
+import {UpdateWindow} from "./modal/UpdateWindow";
 import {useAppDispatch} from "../hook/reduxHook";
 import {appSlice} from "../store/reducers/AppSlice";
 
@@ -27,11 +27,15 @@ export function CarCard({car}: { car: ICar }) {
         <Card.Header><strong>{car.name}</strong></Card.Header>
         <Card.Body>
           <Card.Title>Модель: {car.model}</Card.Title>
-          <Card.Text className="d-flex flex-column mb">
+          <div className="d-flex flex-column mb">
             <span>Год: {car.year}</span>
-            <span>Цвет: {car.color}</span>
-            <span>Цена: {car.price}</span>
-          </Card.Text>
+            <div className="d-flex flex-row gap-2 align-items-center">
+              Цвет:
+              <div style={{backgroundColor: car.color, width: "20px", height: "20px", border: "grey solid 1px"}}>
+              </div>
+            </div>
+            <div>Цена: {car.price}</div>
+          </div>
           <div className="d-flex gap-2 justify-content-around">
             <Button variant="outline-secondary"
                     onClick={() => setModalShow(true)}
@@ -46,9 +50,9 @@ export function CarCard({car}: { car: ICar }) {
           </div>
         </Card.Body>
       </Card>
-      <Window car={car}
-              show={modalShow}
-              onHide={() => setModalShow(false)}
+      <UpdateWindow car={car}
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
       />
     </>
   )

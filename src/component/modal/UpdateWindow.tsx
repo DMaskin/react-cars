@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import {ICar} from "../model";
+import {ICar} from "../../model";
 import {Col, Form, Modal, Row} from "react-bootstrap";
 import {Button} from "react-bootstrap";
-import {useAppDispatch} from "../hook/reduxHook";
-import {appSlice} from "../store/reducers/AppSlice";
+import {useAppDispatch} from "../../hook/reduxHook";
+import {appSlice} from "../../store/reducers/AppSlice";
 
 interface WindowProps {
   show: boolean
@@ -11,7 +11,7 @@ interface WindowProps {
   car: ICar
 }
 
-export function Window({onHide, car, show}: WindowProps) {
+export function UpdateWindow({onHide, car, show}: WindowProps) {
   const {updateCar} = appSlice.actions
   const dispatch = useAppDispatch()
 

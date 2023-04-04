@@ -4,13 +4,13 @@ import {ICar} from "../../model";
 interface AppState {
   cars: ICar[],
   isLoading: boolean,
-  error: string
+  error: string,
 }
 
 const initialState: AppState = {
   cars: [] as ICar[],
   isLoading: false,
-  error: ""
+  error: "",
 }
 
 export const appSlice = createSlice({
@@ -37,7 +37,7 @@ export const appSlice = createSlice({
       const property = action.payload
       state.cars = [...state.cars.sort((a: any, b: any) =>
         a[property] > b[property] ? 1 : -1)]
-    }
+    },
   }
 })
 

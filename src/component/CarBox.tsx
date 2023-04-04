@@ -5,7 +5,11 @@ import {ICar} from "../model";
 import {CarCard} from "./CarCard";
 
 export function CarBox() {
-  const {cars} = useAppSelector(state => state.appReducer)
+  const {cars, error} = useAppSelector(state => state.appReducer)
+
+  if (error) {
+    return <h2 className="m-5" style={{color: "red"}}>{error}</h2>
+  }
 
   return (
     <Container className="mt-5">

@@ -13,8 +13,8 @@ function App() {
     setIsLoading(true)
     CarsAPI.fetchCars()
       .then((res) => dispatch(setCars(res)))
-      .catch((e) => setError(e))
-      .finally(() => setIsLoading(false))
+      .catch((e) => dispatch(setError(e.message)))
+      .finally(() => dispatch(setIsLoading(false)))
   }, [])
 
   return (
