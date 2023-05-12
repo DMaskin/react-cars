@@ -1,47 +1,43 @@
-import React, {useState} from 'react'
-import {ICar} from "../../model";
-import {Col, Form, Modal, Row} from "react-bootstrap";
-import {Button} from "react-bootstrap";
-import {useAppDispatch} from "../../hook/reduxHook";
-import {appSlice} from "../../store/reducers/AppSlice";
+import React, { useState } from "react"
+import { ICar } from "../../model"
+import { Col, Form, Modal, Row } from "react-bootstrap"
+import { Button } from "react-bootstrap"
+import { useAppDispatch } from "../../app/hooks"
+import { updateCar } from "../../feature/carSlice"
 
 interface WindowProps {
   show: boolean
-  onHide: () => void,
+  onHide: () => void
   car: ICar
 }
 
-export function UpdateWindow({onHide, car, show}: WindowProps) {
-  const {updateCar} = appSlice.actions
+export function UpdateWindow({ onHide, car, show }: WindowProps) {
   const dispatch = useAppDispatch()
 
   const [form, setForm] = useState({
     name: car.name,
     model: car.model,
-    price: car.price
+    price: car.price,
   })
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({...form, [e.target.name]: e.target.value})
+    setForm({ ...form, [e.target.name]: e.target.value })
   }
 
   const updateHandler = () => {
-    const newCar = {...car, name: form.name, model: form.model, price: form.price}
+    const newCar = { ...car, name: form.name, model: form.model, price: form.price }
     dispatch(updateCar(newCar))
     onHide()
   }
 
   return (
-    <Modal
-      {...car}
-      show={show}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
+    <Modal {...car} show={show} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton onHide={onHide}>
         <Modal.Title id="contained-modal-title-vcenter">
-          Обновить <strong>{car.name} {car.model}</strong>
+          Обновить{" "}
+          <strong>
+            {car.name} {car.model}
+          </strong>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -52,11 +48,7 @@ export function UpdateWindow({onHide, car, show}: WindowProps) {
               Марка:
             </Form.Label>
             <Col md="10">
-              <Form.Control type="text"
-                            name="name"
-                            value={form.name}
-                            onChange={changeHandler}
-              />
+              <Form.Control type="text" name="name" value={form.name} onChange={changeHandler} />
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
@@ -64,11 +56,7 @@ export function UpdateWindow({onHide, car, show}: WindowProps) {
               Модель:
             </Form.Label>
             <Col md="10">
-              <Form.Control type="text"
-                            name="model"
-                            value={form.model}
-                            onChange={changeHandler}
-              />
+              <Form.Control type="text" name="model" value={form.model} onChange={changeHandler} />
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
@@ -76,23 +64,17 @@ export function UpdateWindow({onHide, car, show}: WindowProps) {
               Цена:
             </Form.Label>
             <Col md="10">
-              <Form.Control type="text"
-                            name="price"
-                            value={form.price}
-                            onChange={changeHandler}
-              />
+              <Form.Control type="text" name="price" value={form.price} onChange={changeHandler} />
             </Col>
           </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant={"success"}
-                onClick={updateHandler}
-        >
+        <Button variant={"success"} onClick={updateHandler}>
           Обновить
         </Button>
         <Button onClick={onHide}>Закрыть</Button>
       </Modal.Footer>
     </Modal>
-  );
+  )
 }

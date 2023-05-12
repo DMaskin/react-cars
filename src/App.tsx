@@ -1,12 +1,11 @@
-import React, {useEffect} from 'react';
-import {Header} from "./component/Header";
-import {CarBox} from "./component/CarBox";
-import {CarsAPI} from "./service/CarsAPI";
-import {appSlice} from "./store/reducers/AppSlice";
-import {useAppDispatch} from "./hook/reduxHook";
+import React, { useEffect } from "react"
+import { Header } from "./component/Header"
+import { CarBox } from "./component/CarBox"
+import { useAppDispatch } from "./app/hooks"
+import { CarsAPI } from "./feature/carsAPI"
+import { setCars, setError, setIsLoading } from "./feature/carSlice"
 
 function App() {
-  const {setCars, setError, setIsLoading} = appSlice.actions
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -19,10 +18,10 @@ function App() {
 
   return (
     <>
-      <Header/>
-      <CarBox/>
+      <Header />
+      <CarBox />
     </>
-  );
+  )
 }
 
-export default App;
+export default App
